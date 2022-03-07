@@ -17,12 +17,12 @@ class Product:
     """Stores data about a product:
 
     properties:
-        product_name: (string) with the products's  name
-        product_price: (float) with the products's standard price
+        prod_name: (string) with the products's  name
+        prod_price: (float) with the products's standard price
     methods:
     changelog: (When,Who,What)
         RRoot,1.1.2030,Created Class
-        <Your Name>,<Today's Date>,Modified code to complete assignment 8
+        Dan Ficek,March 6th, 2020,Modified code to complete assignment 8
     """
 
     # --Fields--
@@ -103,13 +103,17 @@ class FileProcessor:
     @staticmethod
     def read_data_from_file(file_name):
 
-        objFile= open(file_name,"r")
-        for line in objFile:
-            product,price=line.split(",")
-            lstOfProductObjects.append(Product(product.strip(),float(price.strip())))
+        try:
+            objFile= open(file_name,"r")
+            for line in objFile:
+                product,price=line.split(",")
+                lstOfProductObjects.append(Product(product.strip(),float(price.strip())))
 
-        return lstOfProductObjects
-
+            return lstOfProductObjects
+        except:
+            print("There was no existing list of products in your directory!  Choose Option 2 to start the list.")
+            print()  # new line for looks
+            return lstOfProductObjects
 # Processing  ------------------------------------------------------------- #
 
 # Presentation (Input/Output)  -------------------------------------------- #
@@ -175,12 +179,12 @@ while (True):
         IO.output_current_list(lstOfProductObjects)
 
     elif choice_str == '2':
-    # Let user add data to the list of product objects
+        # Let user add data to the list of product objects
         addProduct = IO.input_new_product()
         lstOfProductObjects.append(addProduct)
 
     elif choice_str == '3':
-
+        # let user save current data to file and exit program
         FileProcessor.save_data_to_file(strFileName,lstOfProductObjects)
         print("Data saved to file!")
 
@@ -188,9 +192,5 @@ while (True):
 
     else:
         print("Error!  Please enter one of the menu options.")
-
-
-
-    # let user save current data to file and exit program
 
 # Main Body of Script  ---------------------------------------------------- #
