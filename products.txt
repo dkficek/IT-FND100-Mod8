@@ -1,0 +1,4 @@
+Instrument,536.0
+Hat,26.0
+Cup,235.0
+Stroller,528.0
